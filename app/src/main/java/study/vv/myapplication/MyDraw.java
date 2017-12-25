@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.CollapsibleActionView;
 import android.view.View;
 
 /**
@@ -19,13 +21,13 @@ public class MyDraw extends View {
     public MyDraw(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         pic= BitmapFactory.decodeResource(getResources(),R.drawable.sprites);
-        man=new Man(100,200,pic);
+        man=new Man(0,200,pic);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
-        man.move(canvas);
+        man.move();
         man.draw(canvas);
         invalidate();
     }
