@@ -17,7 +17,8 @@ import android.view.View;
 public class MyDraw extends View {
     Bitmap pic;
     Man man;
-
+    long time;
+    long lustupdate;
     public MyDraw(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         pic= BitmapFactory.decodeResource(getResources(),R.drawable.sprites);
@@ -27,7 +28,12 @@ public class MyDraw extends View {
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
-        man.move();
+        time=System.currentTimeMillis();
+        lustupdate=0;
+        if(time-lustupdate>100) {
+            man.move();
+            lustupdate=time;
+        }
         man.draw(canvas);
         invalidate();
     }
